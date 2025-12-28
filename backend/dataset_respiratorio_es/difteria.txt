@@ -1,0 +1,18 @@
+# DIFTERIA: GUÍA DEL PACIENTE
+
+## ¿Qué es la Difteria?
+[cite_start]Es una infección bacteriana grave que afecta la nariz y la garganta[cite: 664, 666]. [cite_start]Es rara en países con buena vacunación, pero peligrosa si se viaja a zonas de riesgo sin estar vacunado[cite: 671]. [cite_start]Puede ser mortal si afecta al corazón o sistema nervioso[cite: 670].
+
+## Síntomas Clave
+[cite_start]Los síntomas aparecen de 2 a 5 días tras la infección[cite: 673]:
+* [cite_start]**Membrana grisácea:** Una capa espesa de color gris/negro en la garganta o amígdalas (signo distintivo)[cite: 667, 675].
+* [cite_start]Dolor de garganta y ronquera[cite: 673].
+* [cite_start]Cuello hinchado ("cuello de toro") por ganglios inflamados[cite: 675, 701].
+* [cite_start]Dificultad para respirar o tragar[cite: 673].
+* [cite_start]Fiebre y escalofríos[cite: 673].
+
+## Prevención y Vacunación
+[cite_start]La mejor prevención es la **vacuna (DTaP / Tdap)**[cite: 689].
+* [cite_start]**Niños:** Deben seguir el calendario de vacunación[cite: 740].
+* [cite_start]**Adultos:** Necesitan un refuerzo cada 10 años, especialmente si viajan a zonas de riesgo (Asia, África, Europa del Este)[cite: 691, 762].
+* [cite_start]Si ha estado en contacto con alguien con difteria, busque atención médica inmediata para recibir antibióticos preventivos[cite: 693].

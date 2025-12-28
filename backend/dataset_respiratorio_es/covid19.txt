@@ -1,0 +1,25 @@
+# COVID-19: GUÍA DEL PACIENTE
+
+## Síntomas Comunes
+[cite_start]Los síntomas aparecen de 2 a 14 días tras la exposición[cite: 219]. Incluyen:
+* [cite_start]Fiebre o escalofríos[cite: 222].
+* [cite_start]**Tos seca** y dificultad para respirar[cite: 220].
+* [cite_start]Fatiga extrema[cite: 221].
+* [cite_start]**Pérdida del gusto o del olfato** (síntoma distintivo)[cite: 220].
+* [cite_start]Dolor de garganta, congestión, náuseas o diarrea[cite: 221, 223].
+
+## Grupos de Riesgo
+[cite_start]Adultos mayores de 65 años y personas con afecciones previas (diabetes, corazón, pulmones, inmunodeprimidos) tienen mayor riesgo de enfermedad grave[cite: 273, 278]. [cite_start]Si pertenece a este grupo y da positivo, contacte a su médico inmediatamente para evaluar tratamientos antivirales tempranos[cite: 242].
+
+## Señales de Advertencia de Emergencia
+[cite_start]Busque atención médica de emergencia de inmediato si presenta[cite: 244]:
+* Dificultad para respirar persistente.
+* Dolor o presión persistente en el pecho.
+* Confusión repentina o incapacidad para despertarse/mantenerse despierto.
+* [cite_start]Labios, piel o lecho de las uñas pálidos, grises o azules[cite: 245].
+
+## Prevención y Cuidados
+* [cite_start]Vacunación actualizada[cite: 297].
+* [cite_start]Uso de mascarillas en espacios cerrados o concurridos[cite: 338].
+* [cite_start]Lavado frecuente de manos y ventilación de espacios[cite: 331, 336].
+* [cite_start]Si está enfermo: Aíslese, descanse y beba líquidos[cite: 325].

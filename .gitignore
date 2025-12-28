@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+
+# Build outputs
+frontend/dist/
+frontend/build/
+backend/tts_out/
+backend/videos_out/
+tts_out/
+videos_out/
+chunks/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Word documents temp files
+~$*.docx
+
+# Wav2Lip models (son muy pesados)
+Wav2Lipv2/checkpoints/*.pth
+Wav2Lipv2/checkpoints/weights/
+
+# Piper voices (pueden ser pesados)
+voices/
+
+# GFPGAN weights (archivos muy grandes)
+backend/gfpgan/weights/*.pth
+gfpgan/weights/*.pth
+
+# Output files
+*.mp4
+*.mp3
+*.wav
+*.avi
+
+# Excepciones - mantener la imagen del avatar
+!avatar_doctor.png
+!frontend/public/avatar_doctor.png

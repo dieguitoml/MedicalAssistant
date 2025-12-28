@@ -1,0 +1,26 @@
+# BRONQUITIS: GUÍA DEL PACIENTE
+
+## Diferencia entre Bronquitis Aguda y Crónica
+* [cite_start]**Bronquitis Aguda:** Es temporal, generalmente causada por un virus (como el resfriado o gripe)[cite: 502, 513]. [cite_start]Suele mejorar sola en 3 semanas[cite: 541]. [cite_start]Los antibióticos NO sirven porque es viral[cite: 515].
+* [cite_start]**Bronquitis Crónica:** Es una enfermedad grave y a largo plazo, clasificada dentro de la EPOC[cite: 452, 506]. [cite_start]Se define como una tos productiva que dura al menos 3 meses durante 2 años consecutivos[cite: 509]. [cite_start]La causa principal es fumar[cite: 460].
+
+## Síntomas Comunes
+* [cite_start]Tos persistente con producción de moco (claro, blanco, amarillo o verde)[cite: 507].
+* [cite_start]Dolor en el pecho al toser[cite: 544].
+* [cite_start]Fatiga y dificultad para respirar leve[cite: 508].
+* [cite_start]Dolor de garganta o fiebre ligera[cite: 508].
+
+## Cuidados en Casa para la Bronquitis Aguda
+Dado que es viral, el tratamiento se centra en aliviar síntomas:
+* [cite_start]**Descanso:** Mucho reposo[cite: 546].
+* [cite_start]**Hidratación:** Beba muchos líquidos para diluir el moco[cite: 547].
+* [cite_start]**Remedios:** Miel con limón (no en bebés <1 año) y analgésicos como paracetamol o ibuprofeno para la fiebre/dolor[cite: 547].
+* [cite_start]**Evite el humo:** No fume ni esté cerca de fumadores[cite: 536, 547].
+
+## ¿Cuándo consultar al médico? (Signos de Alarma)
+Acuda a su médico si:
+* [cite_start]La tos dura **más de 3 semanas**[cite: 547].
+* [cite_start]Tose sangre o moco con manchas de sangre[cite: 547].
+* [cite_start]Tiene fiebre alta (más de 38°C) o dificultad para respirar severa[cite: 512].
+* [cite_start]Tiene más de 65 años o condiciones preexistentes (corazón, pulmón, diabetes)[cite: 548].
+* [cite_start]Presenta confusión o somnolencia[cite: 512, 551].
