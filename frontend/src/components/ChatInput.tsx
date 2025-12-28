@@ -7,7 +7,7 @@ import type {KeyboardEvent} from 'react'
 import {Send, Trash2, Volume2, Video} from 'lucide-react'
 
 interface ChatInputProps {
-    onSend : (message: string, useTts?: boolean, useAvatar?: boolean) => void
+    onSend : (message: string, useTts: boolean, useAvatar: boolean) => void
     disabled? : boolean
     placeholder? : string
     onClear? : () => void
