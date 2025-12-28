@@ -8,14 +8,16 @@ from pathlib import Path
 from typing import Optional
 
 from ..config import AVATAR_IMAGE, WAV2LIP_DIR, VIDEO_OUTPUT_DIR
+from .blink_service import BlinkService
 
 class AvatarService:
     """
     Servicio para generar video del avatar con Wav2Lip
     """
     
-    def __init__(self):
+    def __init__(self, enable_blinks: bool = True):
         self._wav2lip = None
+        self._blink_service = BlinkService() if enable_blinks else None
         self._load_model()
     
     def _load_model(self):
@@ -98,10 +100,37 @@ class AvatarService:
             )
             
             elapsed = time.time() - start_time
-            
+
             if result_path and os.path.exists(result_path) and os.path.getsize(result_path) > 1000:
                 size = os.path.getsize(result_path) / (1024 * 1024)  # MB
                 print(f"[AVATAR] ✓ Video generado en {elapsed:.2f}s: {size:.1f}MB")
+
+                # Añadir parpadeos si está habilitado
+                if self._blink_service:
+                    print(f"[AVATAR] Añadiendo parpadeos naturales...")
+                    blink_start = time.time()
+
+                    # Generar video con parpadeos
+                    output_with_blinks = VIDEO_OUTPUT_DIR / f"avatar_{timestamp}_final.mp4"
+                    result_with_blinks = self._blink_service.add_blinks(
+                        result_path,
+                        str(output_with_blinks),
+                        blink_frequency=0.25  # 1 parpadeo cada 4 segundos
+                    )
+
+                    if result_with_blinks:
+                        blink_elapsed = time.time() - blink_start
+                        # Eliminar video temporal sin parpadeos
+                        try:
+                            os.remove(result_path)
+                        except:
+                            pass
+                        print(f"[AVATAR] ✓ Parpadeos añadidos en {blink_elapsed:.2f}s")
+                        return result_with_blinks
+                    else:
+                        print(f"[AVATAR] ⚠ No se pudieron añadir parpadeos, usando video original")
+                        return result_path
+
                 return result_path
             else:
                 print("[AVATAR] ✗ Video no generado correctamente")
