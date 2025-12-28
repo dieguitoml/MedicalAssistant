@@ -84,17 +84,17 @@ class AvatarService:
             timestamp = int(time.time() * 1000)
             output_path = VIDEO_OUTPUT_DIR / f"avatar_{timestamp}.mp4"
             
-            print(f"[AVATAR] Generando video (2-5 segundos)...")
+            print(f"[AVATAR] Generando video con parámetros optimizados...")
             start_time = time.time()
-            
-            # Generar video con Wav2Lip
+
+            # Generar video con Wav2Lip - Configuración optimizada para velocidad
             result_path = self._wav2lip.run(
                 video_path=AVATAR_IMAGE,
                 audio_path=audio_path,
-                batch_size=48,  # RTX 3060 Laptop (6GB): 48 es óptimo
-                enhance=False,  # False = más rápido
+                batch_size=96,  # RTX 3060: 96 es un buen equilibrio velocidad/memoria
+                enhance=False,  # False = más rápido (sin mejora facial)
                 outfile=str(output_path),
-                fps=25
+                fps=20  # Reducido de 25 a 20 para ~20% más velocidad
             )
             
             elapsed = time.time() - start_time
