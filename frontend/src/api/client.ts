@@ -22,14 +22,17 @@ const apiClient = axios.create({
 
 export async function sendMessage(
     message : string,
-    useTts : boolean = true,
-    useAvatar : boolean = true
+    useTts : boolean,
+    useAvatar : boolean
 ) : Promise<ChatResponse> {
     const request: ChatRequest = {
         message,
         use_tts : useTts,
         use_avatar : useAvatar
     }
+
+    console.log('Sending request:', request) // Debug
+
     const response = await apiClient.post<ChatResponse>('/api/chat',request)
     return response.data
 }  

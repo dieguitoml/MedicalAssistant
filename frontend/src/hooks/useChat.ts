@@ -18,8 +18,10 @@ export function useChat() {
    * Enviar un mensaje
    */
 
-  const send = async(content: string, useTts: boolean = true, useAvatar: boolean = true) => {
+  const send = async(content: string, useTts: boolean, useAvatar: boolean) => {
     if(!content.trim()) return
+
+    console.log('useChat send:', { content, useTts, useAvatar }) // Debug
 
     //Mensaje del usuario
     const userMessage : Message = {
