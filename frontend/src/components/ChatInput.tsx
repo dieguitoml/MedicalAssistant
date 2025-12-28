@@ -15,8 +15,8 @@ interface ChatInputProps {
 
 export function ChatInput({onSend, disabled, placeholder, onClear} : ChatInputProps){
     const [input, setInput] = useState('')
-    const [useTts, setUseTts] = useState(true)
-    const [useAvatar, setUseAvatar] = useState(true)
+    const [useTts, setUseTts] = useState(false)
+    const [useAvatar, setUseAvatar] = useState(false)
 
     const handleSend = () => {
         if(input.trim() && !disabled){
