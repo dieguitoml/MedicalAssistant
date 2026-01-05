@@ -21,6 +21,7 @@ Asistente médico virtual inteligente especializado en enfermedades respiratoria
 - [Dataset de Enfermedades Respiratorias](#-dataset-de-enfermedades-respiratorias)
 - [Sistema de Parpadeos Naturales](#-sistema-de-parpadeos-naturales)
 - [Optimizaciones de Wav2Lip](#-optimizaciones-de-wav2lip)
+- [Sistema de Reconocimiento de Voz (STT)](#-sistema-de-reconocimiento-de-voz-stt)
 - [Uso](#-uso)
 - [Endpoints de la API](#-endpoints-de-la-api)
 - [Rendimiento](#-rendimiento)
@@ -35,7 +36,8 @@ Asistente médico virtual inteligente especializado en enfermedades respiratoria
 - 🤖 **LLM con RAG**: Respuestas basadas en conocimiento médico verificado usando Ollama + ChromaDB
 - 🧠 **Embeddings de Alta Calidad**: nomic-embed-text (8192 tokens, 768 dims) para mejor retrieval
 - 📚 **Dataset Completo**: 20 enfermedades respiratorias (1500-2400 caracteres cada una)
-- 🎙️ **Síntesis de Voz**: Generación de audio natural en español con Piper TTS
+- 🎤 **Reconocimiento de Voz (STT)**: Entrada por voz usando Web Speech API
+- 🎙️ **Síntesis de Voz (TTS)**: Generación de audio natural en español con Piper TTS
 - 🎭 **Avatar Animado**: Sincronización labial realista con Wav2Lip v2 + sistema de parpadeos naturales
 - 💬 **Interfaz Moderna**: Frontend React con diseño responsive y accesible
 - 🔒 **Información Confiable**: Base de datos vectorial con información médica verificada
@@ -82,6 +84,7 @@ Asistente médico virtual inteligente especializado en enfermedades respiratoria
 - **Tailwind CSS** - Framework CSS utility-first
 - **Lucide React** - Iconos
 - **Axios** - Cliente HTTP
+- **Web Speech API** - Reconocimiento de voz (STT)
 
 ### Infraestructura
 - **CUDA** - Aceleración GPU (NVIDIA)
@@ -386,6 +389,59 @@ parser.add_argument('--nosmooth', action='store_true')
 
 ---
 
+## 🎤 Sistema de Reconocimiento de Voz (STT)
+
+El frontend incluye reconocimiento de voz para entrada manos libres usando la Web Speech API del navegador.
+
+### Características
+- **Reconocimiento en tiempo real**: Transcripción continua mientras hablas
+- **Idioma español**: Configurado para `es-ES`
+- **Resultados intermedios**: Muestra la transcripción mientras hablas
+- **Detección automática**: Detecta cuándo empiezas y terminas de hablar
+- **Interfaz visual**: Botón de micrófono con animación cuando está grabando
+
+### Implementación
+
+**Archivo:** `frontend/src/components/ChatInput.tsx`
+
+```typescript
+// Inicialización Web Speech API
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+const recognition = new SpeechRecognition()
+recognition.lang = 'es-ES'
+recognition.continuous = true
+recognition.interimResults = true
+
+// Manejo de resultados
+recognition.onresult = (event) => {
+  const transcript = event.results[lastResultIndex][0].transcript
+  setInput(transcript)  // Actualiza el campo de texto
+}
+```
+
+### Compatibilidad de Navegadores
+
+| Navegador | Soporte |
+|-----------|---------|
+| Chrome | ✅ Completo |
+| Edge | ✅ Completo |
+| Safari | ✅ Completo (iOS 14.3+) |
+| Firefox | ❌ No soportado |
+| Opera | ✅ Completo |
+
+**Nota:** Si el navegador no soporta Web Speech API, el botón de micrófono no aparecerá.
+
+### Uso
+
+1. Haz clic en el botón del micrófono (🎤)
+2. Comienza a hablar tu consulta médica
+3. El texto aparecerá en tiempo real en el campo de entrada
+4. Haz clic de nuevo en el micrófono (ahora con ícono 🔇) para detener
+5. Opcionalmente, edita el texto transcrito
+6. Envía tu consulta normalmente
+
+---
+
 ## 🚀 Uso
 
 ### 1. Iniciar Ollama
@@ -420,10 +476,12 @@ El frontend estará disponible en: http://localhost:5173
 
 ### 4. Usar la Aplicación
 
-1. Abre http://localhost:5173 en tu navegador
-2. Escribe una pregunta sobre enfermedades respiratorias
-3. Marca/desmarca las opciones de audio y video según prefieras
-4. Espera 2-5 segundos para la respuesta completa
+1. Abre http://localhost:5173 en tu navegador (recomendado: Chrome o Edge para STT)
+2. **Escribe** una pregunta sobre enfermedades respiratorias **o usa el botón del micrófono** para hablar
+3. Marca/desmarca las opciones de audio y video según prefieras:
+   - ✅ **Respuesta con audio**: El asistente responderá con voz
+   - ✅ **Respuesta con video**: El asistente responderá con avatar animado
+4. Envía tu consulta y espera la respuesta (1-12 segundos según opciones)
 
 ---
 
@@ -619,6 +677,19 @@ python test_retrieval.py
 - Regenera ChromaDB: `python ChromaDB.py`
 - Verifica que el modelo de embeddings sea el mismo en `ChromaDB.py` y `config.py`
 - Prueba con `test_retrieval.py` para diagnosticar
+
+### No aparece el botón del micrófono (STT)
+- Verifica que estás usando Chrome, Edge, Safari u Opera (Firefox no soporta Web Speech API)
+- Asegúrate de que el sitio se sirva por HTTPS o localhost (requerido por la API)
+- Verifica permisos del micrófono en el navegador
+- Comprueba la consola del navegador para ver errores de Web Speech API
+
+### El reconocimiento de voz no funciona bien
+- Habla claro y a un volumen normal
+- Reduce ruido de fondo
+- Asegúrate de que el micrófono esté configurado correctamente en el sistema
+- En Chrome/Edge: Ve a Configuración → Privacidad y Seguridad → Configuración del sitio → Micrófono
+- El idioma está configurado para español (es-ES)
 
 ---
 
