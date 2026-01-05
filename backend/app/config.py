@@ -14,7 +14,7 @@ PROJECT_ROOT = BASE_DIR.parent
 
 # Configuración de modelos
 CHAT_MODEL = os.getenv("CHAT_MODEL", "llama3.2")
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-minilm:22m")
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "nomic-embed-text")
 DATABASE_LOCATION = os.getenv("DATABASE_LOCATION", str(PROJECT_ROOT / "chunks"))
 
 # Configuración TTS

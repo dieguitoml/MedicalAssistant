@@ -1,20 +1,106 @@
 # FIBROSIS PULMONAR: GUÍA DEL PACIENTE
 
-## ¿Qué es?
-Es una enfermedad donde el tejido de los pulmones se cicatriza, se vuelve grueso y duro. Esto dificulta que el oxígeno pase a la sangre. La causa a menudo es desconocida (Fibrosis Pulmonar Idiopática), pero puede relacionarse con el tabaco, contaminantes ambientales o ciertos medicamentos.
+## ¿Qué es la Fibrosis Pulmonar?
+La fibrosis pulmonar es una enfermedad en la que el tejido pulmonar se daña y forma cicatrices (fibrosis). Este tejido cicatrizado se vuelve grueso y rígido, dificultando la respiración y el paso del oxígeno a la sangre. Es una enfermedad progresiva e irreversible.
 
-## Síntomas Clave
-* **Dificultad para respirar:** Progresiva (empeora con el tiempo).
-* **Tos seca:** Persistente y que no mejora.
-* **Acropaquia:** Ensanchamiento y redondeo de las puntas de los dedos.
-* Fatiga extrema y pérdida de peso sin razón.
+## Tipos de Fibrosis Pulmonar
+### Fibrosis Pulmonar Idiopática (FPI)
+* La causa es desconocida (idiopática)
+* La forma más común y grave
+* Afecta principalmente a personas mayores de 50 años
+* Más frecuente en hombres que en mujeres
 
-## Alerta: Exacerbación Aguda
-Si tiene fibrosis pulmonar y **su respiración empeora bruscamente** en cuestión de días, busque ayuda médica inmediata. Puede ser una exacerbación aguda, que es potencialmente mortal.
+### Fibrosis Pulmonar con Causa Conocida
+Causada por:
+* **Exposición ambiental:** Polvo de sílice, asbesto, metales pesados, polvo de carbón
+* **Radioterapia:** En tratamiento de cáncer de mama o pulmón
+* **Medicamentos:** Algunos quimioterapéuticos, antibióticos (nitrofurantoína), medicamentos cardíacos (amiodarona)
+* **Enfermedades autoinmunes:** Artritis reumatoide, esclerodermia, lupus
 
-## Tratamiento y Manejo
-No tiene cura (el daño no se repara), pero se puede frenar:
-* **Medicamentos:** Antifibróticos para ralentizar la cicatrización.
-* **Rehabilitación Pulmonar:** Ejercicios para aprender a respirar mejor.
-* **Oxigenoterapia:** Uso de oxígeno suplementario.
-* **Trasplante:** En casos severos.
+## Síntomas
+* **Disnea progresiva:** Falta de aire que empeora gradualmente, inicialmente con esfuerzo, luego en reposo
+* **Tos seca persistente:** Que no mejora con tratamientos habituales
+* **Fatiga extrema:** Cansancio constante
+* **Pérdida de peso involuntaria**
+* **Dolor muscular y articular**
+* **Acropaquia (dedos en palillo de tambor):** Ensanchamiento de las puntas de dedos de manos y pies
+
+## Diagnóstico
+* **Tomografía computarizada de alta resolución (TCAR):** Muestra el patrón de cicatrización
+* **Pruebas de función pulmonar:** Espirometría y medición de capacidad de difusión
+* **Oximetría de pulso:** Mide saturación de oxígeno
+* **Prueba de caminata de 6 minutos:** Evalúa capacidad funcional
+* **Biopsia pulmonar:** En casos dudosos, para confirmar diagnóstico
+* **Análisis de sangre:** Descartar causas autoinmunes
+
+## Tratamiento
+### No Hay Cura, Pero Hay Tratamientos que Ralentizan la Progresión
+
+**Medicamentos Antifibróticos (solo para FPI):**
+* **Pirfenidona (Esbriet):** Reduce la formación de cicatrices
+* **Nintedanib (Ofev):** Ralentiza el deterioro de la función pulmonar
+
+**Efectos secundarios comunes:** Náuseas, diarrea, erupción cutánea, fatiga
+
+### Terapia de Oxígeno
+* **Indicada cuando:** Saturación de oxígeno < 88-90%
+* **Beneficios:** Alivia la disnea, mejora capacidad de ejercicio, aumenta supervivencia
+* **Uso:** Puede ser necesario 24 horas al día en casos avanzados
+
+### Rehabilitación Pulmonar
+Programa que incluye:
+* Ejercicios respiratorios
+* Entrenamiento físico adaptado
+* Educación sobre la enfermedad
+* Apoyo nutricional y psicológico
+
+**Beneficios:** Mejora calidad de vida, reduce síntomas, aumenta capacidad física
+
+### Trasplante de Pulmón
+* **Considerado en:** Pacientes menores de 65-70 años con enfermedad avanzada
+* **Única opción curativa:** Pero requiere medicamentos inmunosupresores de por vida
+* **Criterios estrictos:** Evaluación exhaustiva necesaria
+
+## Autocuidado y Estilo de Vida
+* **Dejar de fumar:** Absolutamente esencial
+* **Evitar exposiciones:** Polvo, humos, químicos, contaminación
+* **Vacunación:** Gripe anual, neumococo, COVID-19
+* **Ejercicio regular:** Según tolerancia, mantiene la función física
+* **Nutrición adecuada:** Dieta balanceada, mantener peso saludable
+* **Manejo de infecciones:** Tratar rápidamente cualquier infección respiratoria
+* **Apoyo emocional:** Grupos de apoyo, consejería si es necesario
+
+## Complicaciones
+* **Insuficiencia respiratoria:** Niveles bajos de oxígeno
+* **Hipertensión pulmonar:** Presión alta en arterias pulmonares
+* **Cor pulmonale:** Falla cardíaca derecha
+* **Cáncer de pulmón:** Riesgo aumentado
+* **Infecciones respiratorias:** Más frecuentes y graves
+* **Coágulos sanguíneos:** En arterias pulmonares
+
+## Pronóstico
+* **Muy variable:** Depende del tipo y causa
+* **FPI:** Generalmente progresa en 3-5 años, pero algunos pacientes tienen curso más lento
+* **Con tratamiento:** Los antifibróticos pueden ralentizar la progresión
+* **Factores de mejor pronóstico:**
+  - Diagnóstico temprano
+  - Respuesta al tratamiento
+  - Buena condición física inicial
+  - Edad más joven
+
+## Cuándo Consultar al Médico Urgentemente
+* Empeoramiento súbito de la dificultad respiratoria
+* Tos con sangre
+* Dolor torácico severo
+* Confusión o somnolencia extrema
+* Saturación de oxígeno < 90% en reposo
+* Fiebre alta que no baja
+
+## Exacerbaciones Agudas
+Empeoramiento súbito e inexplicado:
+* **Síntomas:** Disnea severa, tos nueva o empeoramiento
+* **Requiere:** Hospitalización inmediata
+* **Tratamiento:** Corticosteroides en dosis altas, oxígeno, soporte ventilatorio si es necesario
+* **Pronóstico:** Las exacerbaciones agudas son graves y pueden ser mortales
+
+**Nota importante:** La fibrosis pulmonar es una enfermedad seria que requiere seguimiento médico especializado continuo. El tratamiento temprano y el manejo adecuado pueden mejorar significativamente la calidad de vida y ralentizar la progresión de la enfermedad.

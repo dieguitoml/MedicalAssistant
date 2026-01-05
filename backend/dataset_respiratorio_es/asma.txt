@@ -1,28 +1,70 @@
-# ASMA: GUÍA DEL PACIENTE
+# ASMA BRONQUIAL: GUÍA DEL PACIENTE
 
 ## ¿Qué es el Asma?
-[cite_start]El asma es una enfermedad pulmonar crónica (a largo plazo) que inflama y estrecha las vías respiratorias[cite: 556, 558]. [cite_start]Afecta los tubos que llevan aire dentro y fuera de los pulmones[cite: 557]. [cite_start]No tiene cura, pero sus síntomas pueden controlarse eficazmente con tratamiento[cite: 609].
+El asma es una enfermedad crónica que inflama y estrecha las vías respiratorias de los pulmones. Durante un ataque de asma, los músculos alrededor de las vías respiratorias se contraen, el revestimiento se inflama y se produce mucosidad espesa, dificultando la respiración.
 
-## Síntomas Principales del Asma
-[cite_start]Los síntomas varían de persona a persona, pero los más comunes incluyen[cite: 611]:
-* [cite_start]**Sibilancias:** Un sonido silbante o chillido al respirar (especialmente al exhalar)[cite: 576, 612].
-* [cite_start]**Tos:** Frecuente, que puede empeorar por la noche o temprano en la mañana[cite: 576].
-* [cite_start]**Opresión en el pecho:** Sensación de que algo aprieta el tórax[cite: 576].
-* [cite_start]**Dificultad para respirar:** Sensación de falta de aire[cite: 576].
+## Síntomas Principales
+* **Sibilancias:** Silbido al respirar, especialmente al exhalar
+* **Tos persistente:** Peor por la noche o temprano en la mañana
+* **Opresión en el pecho:** Sensación de presión o peso
+* **Dificultad para respirar:** Falta de aire, especialmente con actividad física
 
-## GUÍA DE EMERGENCIA: ATAQUE DE ASMA
-[cite_start]Un ataque de asma puede ser mortal[cite: 613]. Si usted o su hijo presentan dificultad grave para respirar, siga estos pasos:
+Los síntomas pueden variar de leves a severos y aparecer todos los días o solo ocasionalmente.
 
-1. [cite_start]**Posición:** Siéntese erguido (no se acueste) e intente mantener la calma[cite: 626, 627].
-2. **Inhalador de Alivio (Azul):** Tome 1 bocanada cada 30-60 segundos, hasta un máximo de 10 bocanadas. [cite_start]Use un espaciador si tiene uno[cite: 627, 628].
-3. **LLAME A EMERGENCIAS (112/911/999) SI:**
-   * [cite_start]No mejora tras 10 bocanadas[cite: 628].
-   * [cite_start]Los labios o la piel se tornan azules/grises[cite: 629].
-   * [cite_start]No puede hablar o respirar es extremadamente difícil[cite: 629].
-   * [cite_start]No tiene su inhalador a mano[cite: 628].
+## Desencadenantes Comunes
+* **Alérgenos:** Polen, ácaros del polvo, moho, caspa de mascotas
+* **Irritantes:** Humo de tabaco, contaminación del aire, productos químicos, perfumes fuertes
+* **Infecciones respiratorias:** Resfriados, gripe, sinusitis
+* **Ejercicio físico:** Especialmente en aire frío y seco
+* **Emociones fuertes:** Estrés, ansiedad, risa fuerte
+* **Cambios climáticos:** Aire frío, humedad alta
+* **Medicamentos:** Aspirina, ibuprofeno, betabloqueantes
 
-## Tratamiento y Prevención
-El tratamiento del asma suele incluir dos tipos de inhaladores:
-1. **Inhalador de Alivio (Rescate):** Se usa solo cuando hay síntomas. [cite_start]Actúa rápido para abrir las vías respiratorias[cite: 591, 592].
-2. [cite_start]**Inhalador Preventivo (Control):** Se usa todos los días para reducir la inflamación y prevenir ataques a largo plazo[cite: 594, 595].
-[cite_start]Es vital evitar los desencadenantes como el humo del tabaco, ácaros del polvo, polen, mascotas y aire frío[cite: 590, 616, 617].
+## Diagnóstico
+Su médico utilizará:
+* **Espirometría:** Mide la cantidad y velocidad del aire que puede exhalar
+* **Prueba de flujo espiratorio máximo (PEF):** Medición rápida de la función pulmonar
+* **Pruebas de alergia:** Identifican desencadenantes alérgicos específicos
+* **Historia médica:** Síntomas, antecedentes familiares, exposiciones ambientales
+
+## Tratamiento
+### Medicamentos de Alivio Rápido (Rescate)
+* **Broncodilatadores de acción corta:** Abren rápidamente las vías respiratorias durante un ataque
+* **Siempre llevar consigo:** El inhalador de rescate debe estar disponible en todo momento
+
+### Medicamentos de Control a Largo Plazo
+* **Corticosteroides inhalados:** Reducen la inflamación (uso diario)
+* **Broncodilatadores de acción prolongada:** Mantienen las vías abiertas (uso diario)
+* **Antagonistas de leucotrienos:** Previenen la inflamación
+
+### Plan de Acción para el Asma
+Trabaje con su médico para crear un plan personalizado que incluya:
+* Qué medicamentos tomar diariamente
+* Cómo reconocer un empeoramiento de síntomas
+* Qué hacer durante un ataque de asma
+* Cuándo buscar atención de emergencia
+
+## Prevención y Control
+* **Evite sus desencadenantes identificados**
+* **Tome medicamentos según lo prescrito**, incluso si se siente bien
+* **Use el inhalador correctamente:** Pida a su médico que le muestre la técnica
+* **Monitoree sus síntomas:** Lleve un diario de síntomas y mediciones de PEF
+* **Vacúnese:** Gripe y neumonía pueden desencadenar crisis asmáticas
+* **No fume:** El tabaco empeora significativamente el asma
+
+## Señales de Emergencia - Busque Ayuda Inmediata Si:
+* El inhalador de rescate no alivia los síntomas
+* Dificultad extrema para respirar o hablar
+* Labios o uñas azulados
+* Frecuencia respiratoria muy rápida
+* Confusión o somnolencia extrema
+* Retracción de la piel entre las costillas o en el cuello al respirar
+
+## Vivir con Asma
+Con un tratamiento adecuado, la mayoría de las personas con asma pueden:
+* Realizar actividades físicas normales
+* Dormir toda la noche sin síntomas
+* Prevenir ataques de asma
+* Evitar visitas a urgencias
+
+**Nota importante:** El asma no se cura, pero se controla muy bien con tratamiento adecuado. Nunca suspenda sus medicamentos sin consultar a su médico, incluso si se siente mejor.

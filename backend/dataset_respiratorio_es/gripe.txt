@@ -1,0 +1,222 @@
+# GRIPE (INFLUENZA): GUÍA DEL PACIENTE
+
+## ¿Qué es la Gripe?
+La gripe o influenza es una **infección respiratoria viral** causada por virus de influenza que afecta nariz, garganta y pulmones. **NO es lo mismo que un resfriado o "gripe estomacal"** (gastroenteritis). Cada año causa millones de casos, siendo **especialmente peligrosa para mayores de 65 años, bebés y personas con enfermedades crónicas**.
+
+## Diferencia: Gripe vs Resfriado
+
+| Característica | Gripe | Resfriado |
+|---------------|-------|-----------|
+| **Inicio** | Súbito (2-3 días) | Gradual |
+| **Fiebre** | Alta (38-40°C), común | Rara o leve |
+| **Dolores musculares** | Intensos, comunes | Leves |
+| **Fatiga** | Extrema, 2-3 semanas | Leve |
+| **Dolor de cabeza** | Intenso, común | Raro |
+| **Gravedad** | Puede ser mortal | Leve, molesto |
+| **Complicaciones** | Neumonía, hospitalización | Raras |
+
+## Síntomas
+### Aparición Súbita (en horas)
+* **Fiebre alta repentina (38-40°C)** con escalofríos
+* **Dolores musculares intensos** (todo el cuerpo)
+* **Dolor de cabeza severo**
+* **Fatiga extrema y debilidad**
+* **Tos seca persistente**
+* **Dolor de garganta**
+* **Congestión o secreción nasal**
+
+### En Niños (Síntomas Adicionales)
+* Irritabilidad y quejidos
+* Vómitos y diarrea (más frecuente que en adultos)
+* Dolor de oído
+* Menos actividad de lo normal
+
+### Duración
+* Fiebre: 3-4 días
+* Síntomas agudos: 5-7 días
+* Tos y fatiga: Pueden durar 2-3 semanas
+
+## Causas y Transmisión
+### Virus de Influenza (3 tipos)
+* **Influenza A:** Más común, causa epidemias/pandemias
+* **Influenza B:** Común, estacional
+* **Influenza C:** Leve, raro
+
+### Contagio (MUY Infeccioso)
+* **Gotas respiratorias:** Tos, estornudos, hablar (hasta 2 metros)
+* **Contacto con superficies:** Virus sobrevive 24 horas
+* **Período contagioso:**
+  - Desde 1 día ANTES de síntomas
+  - Hasta 5-7 días después de inicio
+  - Niños e inmunodeprimidos: Más tiempo
+
+### Temporada de Gripe
+* **Hemisferio Norte:** Octubre a Mayo (pico Diciembre-Febrero)
+* **Mayor transmisión:** Espacios cerrados, clima frío
+
+## Diagnóstico
+### Evaluación Clínica
+* Historia de síntomas (inicio súbito característico)
+* Temporada de gripe activa
+* Exposición a casos confirmados
+
+### Pruebas de Laboratorio
+* **Test rápido de influenza:** Resultados en 15-20 minutos (menos precisos)
+* **PCR o cultivo viral:** Más precisos, 1-4 horas
+* **Muestra:** Hisopado nasofaríngeo
+
+**Nota:** Muchos casos se diagnostican clínicamente sin pruebas.
+
+## Tratamiento
+
+### Autocuidado (Casos Leves)
+#### Hacer:
+* **Reposo absoluto** en casa
+* **Mantener calor**
+* **Beber líquidos abundantes:** Agua, caldos, té (evitar deshidratación)
+* **Paracetamol o ibuprofeno:** Fiebre y dolores
+  - Dosis adultos: Paracetamol 500-1000mg cada 6-8h
+  - **NUNCA aspirina en menores de 18 años** (riesgo Síndrome de Reye)
+
+#### NO hacer:
+* **NO antibióticos:** NO funcionan contra virus
+* **NO combinar paracetamol con remedios antigripales que ya lo contengan**
+* **NO salir/trabajar:** Quedarse en casa 24h sin fiebre
+
+### Antivirales (Grupos de Riesgo o Casos Graves)
+**Deben iniciarse en primeras 48 horas para ser efectivos**
+
+#### Medicamentos:
+* **Oseltamivir (Tamiflu):** Oral, 75mg 2 veces/día × 5 días
+* **Zanamivir (Relenza):** Inhalado
+* **Baloxavir (Xofluza):** Dosis única oral
+
+#### Beneficios:
+* Acortan enfermedad 1-2 días
+* Reducen complicaciones graves
+* Disminuyen hospitalización/muerte en alto riesgo
+
+#### Indicaciones:
+* Mayores de 65 años
+* Embarazadas
+* Enfermedades crónicas (asma, diabetes, cardiopatía)
+* Inmunodeprimidos
+* Obesidad mórbida (IMC >40)
+* Síntomas graves independiente de edad
+
+## Grupos de Alto Riesgo (Complicaciones Graves)
+* Adultos ≥65 años
+* Niños <2 años (especialmente <6 meses)
+* Embarazadas (especialmente 2º y 3er trimestre)
+* Enfermedades crónicas:
+  - Asma, EPOC, fibrosis quística
+  - Diabetes
+  - Cardiopatía, enfermedad renal
+  - VIH, inmunodepresión
+  - Obesidad mórbida
+
+## Complicaciones (Pueden ser Mortales)
+### Respiratorias
+* **Neumonía:** Bacteriana secundaria o viral primaria
+* **Bronquitis aguda**
+* **Síndrome de dificultad respiratoria aguda (SDRA)**
+* **Exacerbación de asma/EPOC**
+
+### Otras Complicaciones
+* **Otitis media:** En niños
+* **Sinusitis bacteriana**
+* **Miocarditis:** Inflamación del corazón
+* **Encefalitis:** Inflamación cerebral
+* **Miositis/rabdomiólisis:** Daño muscular severo
+* **Síndrome de choque tóxico**
+* **Síndrome de Reye:** En niños que toman aspirina
+
+## Señales de Alarma - BUSCAR ATENCIÓN URGENTE
+
+### En Adultos:
+* Dificultad para respirar o falta de aire
+* Dolor/presión en pecho persistente
+* Mareos persistentes, confusión
+* Convulsiones
+* Ausencia de orina (deshidratación severa)
+* Dolores musculares severos
+* Debilidad extrema
+* Empeoramiento de condiciones crónicas
+
+### En Niños:
+* Respiración rápida o dificultosa
+* Labios/cara azulados o grises
+* Retracción costal (costillas se marcan al respirar)
+* Dolor torácico
+* Dolor muscular severo (rehúsa caminar)
+* Deshidratación (sin lágrimas, boca seca, no orina)
+* No está alerta, difícil despertar
+* Convulsiones
+* Fiebre >40°C
+* **Fiebre o tos que mejoran pero luego regresan peor**
+
+## Prevención
+
+### Vacuna Anual de Gripe (MÁS IMPORTANTE)
+#### Efectividad:
+* Reduce riesgo de gripe 40-60%
+* Reduce hospitalizaciones 40%
+* Reduce muertes 50-65% en mayores
+* **Protege a recién nacidos** si madre vacunada en embarazo
+
+#### Quién debe vacunarse (TODOS ≥6 meses):
+* **Prioridad absoluta:**
+  - Mayores de 65 años
+  - Embarazadas (cualquier trimestre)
+  - Niños 6 meses - 5 años
+  - Enfermedades crónicas
+  - Personal de salud
+  - Cuidadores de alto riesgo
+
+#### Tipos de Vacuna:
+* **Inyección intramuscular:** Para todos (estándar)
+* **Dosis alta/adyuvante:** Mayores de 65 años (más efectiva)
+* **Spray nasal:** 2-49 años (contraindicaciones: embarazo, asma, inmunodepresión)
+
+#### Cuándo vacunarse:
+* **Óptimo:** Octubre-Noviembre
+* **Puede administrarse:** Durante toda la temporada de gripe
+* **Niños 6 meses - 8 años (primera vez):** 2 dosis separadas 4 semanas
+
+#### Mitos:
+* ❌ "La vacuna da gripe": FALSO, virus inactivado
+* ❌ "No funciona": Reduce gravedad aunque no evite 100%
+* ✅ Segura en alergia al huevo (actual formulación)
+
+### Medidas de Higiene
+* **Lavado de manos frecuente:** Agua y jabón 20 segundos
+* **Desinfectante alcohólico:** >60% alcohol si no hay agua
+* **Cubrirse al toser/estornudar:** Con codo, NO mano
+* **Evitar tocarse cara:** Ojos, nariz, boca
+* **Limpiar superficies:** Manijas, teclados, teléfonos diariamente
+* **Evitar multitudes:** Durante temporada de gripe
+* **Quedarse en casa si enfermo:** Hasta 24h sin fiebre
+
+## Cuándo Contactar al Médico
+
+### Contacto Inmediato si:
+* Síntomas de alarma (ver arriba)
+* Pertenece a grupo de alto riesgo
+* Síntomas no mejoran en 7 días
+* Fiebre que regresa después de mejorar
+* Empeoramiento súbito después de mejorar
+
+### Urgencias (112/911):
+* Dificultad severa para respirar
+* Dolor de pecho
+* Tos con mucha sangre
+* Labios azules
+* Confusión severa
+
+## Pronóstico
+* **Casos leves:** Recuperación completa en 1-2 semanas
+* **Con vacuna:** Enfermedad más corta y leve
+* **Alto riesgo sin tratamiento:** Riesgo significativo de complicaciones graves/muerte
+* **Mortalidad anual mundial:** 290,000-650,000 muertes
+
+**Nota crucial:** La gripe NO es "solo un resfriado fuerte". Es una enfermedad potencialmente grave que mata miles de personas cada año. La vacunación anual es la mejor protección. Si pertenece a grupo de riesgo y desarrolla síntomas, contacte a su médico en las primeras 48 horas para considerar antivirales. Quedarse en casa cuando está enfermo protege a personas vulnerables.

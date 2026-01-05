@@ -14,7 +14,7 @@ load_dotenv()
 
 DATASET_FOLDER = "./dataset_respiratorio_es"
 CHROMA_DIR = "./chunks"
-EMBEDDING_MODEL = "all-minilm:22m"  # También puedes usar os.getenv("EMBEDDING_MODEL")
+EMBEDDING_MODEL = "nomic-embed-text"  # Modelo superior con límite 8192 tokens
 
 # === ELIMINAR DB ANTERIOR ===
 if os.path.exists(CHROMA_DIR):
@@ -33,10 +33,10 @@ vectorstore = Chroma(
 
 # === CONFIGURAR TEXT SPLITTER ===
 # Usamos MarkdownTextSplitter para que respete los encabezados y listas
-# Reducimos chunk_size para evitar exceder el límite de contexto del modelo de embeddings
+# Con nomic-embed-text (límite 8192 tokens) podemos usar chunks grandes para mejor contexto
 splitter = MarkdownTextSplitter(
-    chunk_size=400,
-    chunk_overlap=50
+    chunk_size=1000,
+    chunk_overlap=200
 )
 
 # === INGESTA DE ARCHIVOS TXT ===

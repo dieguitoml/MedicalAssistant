@@ -17,8 +17,15 @@ Asistente médico virtual inteligente especializado en enfermedades respiratoria
 - [Estructura del Proyecto](#-estructura-del-proyecto)
 - [Requisitos Previos](#-requisitos-previos)
 - [Instalación](#-instalación)
-- [Uso](#-uso)
 - [Configuración](#-configuración)
+- [Dataset de Enfermedades Respiratorias](#-dataset-de-enfermedades-respiratorias)
+- [Sistema de Parpadeos Naturales](#-sistema-de-parpadeos-naturales)
+- [Optimizaciones de Wav2Lip](#-optimizaciones-de-wav2lip)
+- [Uso](#-uso)
+- [Endpoints de la API](#-endpoints-de-la-api)
+- [Rendimiento](#-rendimiento)
+- [Scripts y Pruebas](#-scripts-y-pruebas)
+- [Solución de Problemas](#-solución-de-problemas)
 - [Licencia](#-licencia)
 
 ---
@@ -26,11 +33,13 @@ Asistente médico virtual inteligente especializado en enfermedades respiratoria
 ## ✨ Características
 
 - 🤖 **LLM con RAG**: Respuestas basadas en conocimiento médico verificado usando Ollama + ChromaDB
+- 🧠 **Embeddings de Alta Calidad**: nomic-embed-text (8192 tokens, 768 dims) para mejor retrieval
+- 📚 **Dataset Completo**: 20 enfermedades respiratorias (1500-2400 caracteres cada una)
 - 🎙️ **Síntesis de Voz**: Generación de audio natural en español con Piper TTS
-- 🎭 **Avatar Animado**: Sincronización labial realista usando Wav2Lip v2
+- 🎭 **Avatar Animado**: Sincronización labial realista con Wav2Lip v2 + sistema de parpadeos naturales
 - 💬 **Interfaz Moderna**: Frontend React con diseño responsive y accesible
 - 🔒 **Información Confiable**: Base de datos vectorial con información médica verificada
-- ⚡ **Tiempo Real**: Generación de respuestas, audio y video en 2-5 segundos
+- ⚡ **Tiempo Real**: Generación de respuestas, audio y video en 8-12 segundos
 
 ---
 
@@ -147,10 +156,10 @@ TFG_INFO/
 
 3. **Ollama** (Servidor LLM local)
    - Descargar desde: https://ollama.com
-   - Instalar el modelo:
+   - Instalar los modelos:
      ```bash
      ollama pull llama3.2
-     ollama pull all-minilm:22m
+     ollama pull nomic-embed-text
      ```
 
 4. **CUDA Toolkit** (Opcional, para aceleración GPU)
@@ -208,6 +217,15 @@ source venv/bin/activate
 # Instalar dependencias
 pip install -r requirements.txt
 
+# Descargar modelo de spaCy para análisis de parpadeos
+python -m spacy download es_core_news_sm
+
+# Generar base de datos ChromaDB
+python ChromaDB.py
+
+# Verificar que el retrieval funciona correctamente
+python test_retrieval.py
+
 # Volver a la raíz del proyecto
 cd ..
 ```
@@ -231,13 +249,14 @@ Crear un archivo `.env` en la raíz del proyecto:
 ```env
 # Modelos
 CHAT_MODEL=llama3.2
-EMBEDDING_MODEL=all-minilm:22m
+EMBEDDING_MODEL=nomic-embed-text
 
 # Rutas
 DATABASE_LOCATION=./chunks
 PIPER_VOICE_DIR=./voices/piper
 PIPER_VOICE_ID=es_MX-claude-high
 AVATAR_IMAGE=./avatar_doctor.png
+WAV2LIP_DIR=./Wav2Lipv2
 
 # Directorios de salida
 TTS_OUTPUT_DIR=./backend/tts_out
@@ -246,6 +265,124 @@ VIDEO_OUTPUT_DIR=./backend/videos_out
 # CORS (Frontend)
 CORS_ORIGINS=http://localhost:5173,http://localhost:3000
 ```
+
+---
+
+## 📚 Dataset de Enfermedades Respiratorias
+
+El sistema incluye 20 archivos en español con información médica verificada sobre enfermedades respiratorias (ubicados en `backend/dataset_respiratorio_es/`). Cada archivo contiene entre 1500-2400 caracteres en formato Markdown.
+
+### Infecciones Respiratorias Agudas
+- **covid19.txt** - COVID-19 y sus variantes
+- **gripe.txt** - Influenza (con información sobre vacunación)
+- **neumonia.txt** - Neumonía bacteriana y viral
+- **tos_ferina.txt** - Tos ferina (pertussis)
+- **difteria.txt** - Difteria
+
+### Vías Respiratorias Superiores
+- **faringitis.txt** - Faringitis aguda y crónica
+- **laringitis.txt** - Laringitis aguda y crónica
+- **epiglotitis.txt** - Epiglotitis (emergencia médica)
+- **sinusitis.txt** - Sinusitis aguda y crónica
+
+### Enfermedades Obstructivas Crónicas
+- **asma.txt** - Asma bronquial
+- **enfermedad_pulmonar_obstructiva_cronica.txt** - EPOC
+- **bronquitis_cronica.txt** - Bronquitis crónica
+
+### Enfermedades Estructurales
+- **fibrosis_pulmonar.txt** - Fibrosis pulmonar idiopática
+- **fibrosis_quistica.txt** - Fibrosis quística
+- **bronquiectasia.txt** - Bronquiectasias
+
+### Enfermedades Ocupacionales e Inflamatorias
+- **neumoconiosis.txt** - Neumoconiosis (silicosis, asbestosis)
+- **sarcoidosis.txt** - Sarcoidosis (incluye síndrome de Löfgren)
+- **tuberculosis.txt** - Tuberculosis
+
+### Cáncer
+- **cancer_de_torax.txt** - Cáncer de pulmón
+- **cancer_de_faringe_laringe.txt** - Cáncer de faringe y laringe
+
+### Configuración de ChromaDB
+
+**Archivo:** `backend/ChromaDB.py`
+
+```python
+# Modelo de embeddings
+EMBEDDING_MODEL = "nomic-embed-text"  # 8192 tokens, 768 dimensiones
+
+# Configuración de chunks
+splitter = MarkdownTextSplitter(
+    chunk_size=1000,      # Caracteres por chunk
+    chunk_overlap=200     # Solapamiento entre chunks
+)
+```
+
+**Ventajas de nomic-embed-text:**
+- Límite de 8192 tokens (vs 512 de all-minilm:22m)
+- Alta calidad de embeddings (768 dimensiones)
+- Permite chunks grandes para mejor contexto
+- Sin errores de "chunk demasiado largo"
+
+---
+
+## 🎬 Sistema de Parpadeos Naturales
+
+El avatar incluye un sistema avanzado de parpadeos que simula comportamiento humano natural:
+
+### Características
+- **Frecuencia natural**: 15-20 parpadeos por minuto
+- **Detección facial**: MediaPipe Face Mesh para ubicación precisa de ojos
+- **Análisis de texto**: spaCy para detectar pausas naturales
+- **Sincronización inteligente**: Parpadeos en puntos de puntuación y pausas
+- **Variación realista**: Distribución gamma para tiempos entre parpadeos
+
+### Implementación
+
+**Archivo:** `backend/app/services/avatar_service.py`
+
+```python
+def generate_blinks(video, text):
+    # Detecta rostros con MediaPipe
+    # Analiza texto con spaCy para encontrar pausas
+    # Genera parpadeos en momentos naturales
+    # Fusiona frames de parpadeo con el video original
+```
+
+**Dependencias:**
+```bash
+pip install mediapipe spacy
+python -m spacy download es_core_news_sm
+```
+
+---
+
+## ⚙️ Optimizaciones de Wav2Lip
+
+### Parámetros Optimizados
+
+**Archivo:** `Wav2Lipv2/inference.py`
+
+```python
+# Sin padding innecesario
+parser.add_argument('--pads', nargs='+', type=int, default=[0, 0, 0, 0])
+
+# FPS óptimo para fluidez
+parser.add_argument('--fps', type=float, default=25.)
+
+# Sin redimensionamiento agresivo
+parser.add_argument('--resize_factor', default=1, type=int)
+
+# Sin suavizado para mayor nitidez
+parser.add_argument('--nosmooth', action='store_true')
+```
+
+**Beneficios:**
+- Mayor nitidez en el video final
+- Mejor sincronización labial
+- Procesamiento más rápido
+- Sin artefactos de suavizado
 
 ---
 
@@ -359,14 +496,100 @@ Obtener preguntas de ejemplo
 ## 📊 Rendimiento
 
 Con una **RTX 3060 Laptop (6GB VRAM)**:
-- Generación de texto (LLM): ~1-2 segundos
-- Generación de audio (TTS): ~0.5-1 segundo
-- Generación de video (Wav2Lip): ~2-4 segundos
-- **Total:** ~4-7 segundos por respuesta completa
+- **Solo texto:** ~1-2 segundos
+  - RAG retrieval: ~0.3-0.5s
+  - Generación LLM: ~0.7-1.5s
+- **Texto + TTS:** ~3-5 segundos
+  - + Síntesis de voz: ~2-3s
+- **Texto + TTS + Avatar:** ~8-12 segundos
+  - + Wav2Lip inference: ~4-6s
+  - + Sistema de parpadeos: ~1-2s
+
+**Nota:** Los tiempos varían según la longitud de la respuesta y la carga del sistema.
+
+---
+
+## 🧪 Scripts y Pruebas
+
+### ChromaDB.py
+**Ubicación:** `backend/ChromaDB.py`
+
+Genera la base de datos vectorial a partir del dataset de enfermedades respiratorias.
+
+```bash
+cd backend
+python ChromaDB.py
+```
+
+**Salida esperada:**
+```
+Procesando asma.txt...
+   ✅ 4 chunks procesados
+Procesando neumonia.txt...
+   ✅ 3 chunks procesados
+...
+✅ Base de datos creada exitosamente en ./chunks
+```
+
+### test_retrieval.py
+**Ubicación:** `backend/test_retrieval.py`
+
+Verifica que el sistema RAG esté funcionando correctamente.
+
+```bash
+cd backend
+python test_retrieval.py
+```
+
+**Salida esperada:**
+```
+🔍 Query: ¿Cuáles son los síntomas del asma?
+📄 Resultado 1 (score: 0.85): asma.txt
+   ## Síntomas del Asma
+   - Dificultad para respirar
+   - Sibilancias (silbidos al respirar)
+   ...
+
+🔍 Query: ¿Cómo se trata la neumonía?
+📄 Resultado 1 (score: 0.82): neumonia.txt
+   ...
+```
+
+### Estructura de Archivos de Salida
+
+```
+backend/
+├── tts_out/              # Archivos de audio generados
+│   └── audio_*.wav
+├── videos_out/           # Videos de avatar generados
+│   └── video_*.mp4
+└── chunks/               # Base de datos ChromaDB
+    └── chroma.sqlite3
+```
 
 ---
 
 ## 🐛 Solución de Problemas
+
+### Error: "Chunk X/Y demasiado largo, omitido"
+
+**Causa:** El modelo de embeddings tiene un límite de tokens muy pequeño (512 tokens en all-minilm:22m).
+
+**Solución:**
+```bash
+# 1. Descargar modelo con mayor límite de tokens
+ollama pull nomic-embed-text
+
+# 2. Actualizar backend/app/config.py
+EMBEDDING_MODEL = "nomic-embed-text"
+
+# 3. Regenerar la base de datos ChromaDB
+cd backend
+python ChromaDB.py
+
+# 4. Verificar que funciona
+python test_retrieval.py
+```
 
 ### Error: "Ollama no disponible"
 - Asegúrate de que Ollama esté corriendo: `ollama serve`
@@ -375,13 +598,27 @@ Con una **RTX 3060 Laptop (6GB VRAM)**:
 ### Error: "CUDA out of memory"
 - Reduce el `batch_size` en `avatar_service.py`
 - Cierra otras aplicaciones que usen la GPU
+- Considera usar CPU para Wav2Lip (más lento pero funcional)
 
 ### Error: "No se encuentra el avatar"
-- Verifica que `avatar_doctor.png` exista en la raíz y en `frontend/public/`
+- Verifica que `avatar_doctor.png` exista en la raíz del proyecto
+- Verifica la ruta en `config.py`: `AVATAR_IMAGE`
 
 ### El video no se genera
 - Verifica que Wav2Lip esté correctamente instalado
-- Verifica que el checkpoint `wav2lip_gan.pth` exista
+- Verifica que el checkpoint `wav2lip_gan.pth` exista en `Wav2Lipv2/checkpoints/`
+- Revisa los logs del backend para errores específicos
+
+### Parpadeos no aparecen en el video
+- Verifica instalación de MediaPipe: `pip install mediapipe`
+- Verifica instalación de spaCy: `pip install spacy`
+- Descarga el modelo de spaCy: `python -m spacy download es_core_news_sm`
+- Revisa que el servicio de avatar esté usando `generate_blinks()`
+
+### El retrieval no encuentra información relevante
+- Regenera ChromaDB: `python ChromaDB.py`
+- Verifica que el modelo de embeddings sea el mismo en `ChromaDB.py` y `config.py`
+- Prueba con `test_retrieval.py` para diagnosticar
 
 ---
 

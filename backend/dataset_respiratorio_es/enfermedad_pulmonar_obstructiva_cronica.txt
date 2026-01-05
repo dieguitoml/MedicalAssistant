@@ -1,0 +1,116 @@
+# EPOC (ENFERMEDAD PULMONAR OBSTRUCTIVA CRÓNICA): GUÍA DEL PACIENTE
+
+## ¿Qué es la EPOC?
+La EPOC es una enfermedad pulmonar progresiva que dificulta la respiración. Incluye principalmente dos condiciones: enfisema (destrucción de sacos aéreos) y bronquitis crónica (inflamación constante de las vías respiratorias). La causa principal es el tabaquismo.
+
+## Síntomas Principales
+* **Disnea (falta de aire):** Inicialmente con ejercicio, luego en reposo
+* **Tos crónica:** Persistente, a menudo productiva
+* **Producción de esputo:** Mucosidad blanca, amarilla o verdosa
+* **Sibilancias:** Silbido al respirar
+* **Opresión en el pecho:** Sensación de presión
+* **Fatiga constante:** Cansancio que limita actividades diarias
+* **Infecciones respiratorias frecuentes**
+* **Hinchazón de tobillos o piernas:** En etapas avanzadas
+
+## Causas y Factores de Riesgo
+### Causa Principal
+* **Tabaquismo:** Responsable del 80-90% de los casos
+* **Exposición al humo:** Tanto fumadores activos como pasivos
+
+### Otros Factores
+* **Exposición ocupacional:** Polvo, químicos, humos industriales
+* **Contaminación del aire:** Exposición prolongada
+* **Deficiencia de alfa-1 antitripsina:** Factor genético raro
+* **Historial de infecciones respiratorias:** En la infancia
+
+## Estadios de la EPOC (Clasificación GOLD)
+* **Estadio 1 (Leve):** FEV1 ≥ 80% - síntomas leves, a menudo no diagnosticada
+* **Estadio 2 (Moderado):** FEV1 50-79% - síntomas más notorios, se busca atención médica
+* **Estadio 3 (Grave):** FEV1 30-49% - mayor limitación, exacerbaciones frecuentes
+* **Estadio 4 (Muy grave):** FEV1 < 30% - calidad de vida muy afectada, riesgo vital
+
+## Diagnóstico
+* **Espirometría:** Prueba fundamental que mide FEV1/FVC
+* **Radiografía de tórax:** Detecta cambios estructurales
+* **TC de tórax:** Evalúa enfisema y otras complicaciones
+* **Gasometría arterial:** Mide niveles de oxígeno y CO2 en sangre
+* **Prueba de marcha de 6 minutos:** Evalúa capacidad funcional
+
+## Tratamiento
+### Dejar de Fumar - ¡Lo Más Importante!
+* **Única medida que frena la progresión de la enfermedad**
+* **Terapias disponibles:** Parches de nicotina, medicamentos (vareniclina, bupropión), consejería
+
+### Medicamentos Broncodilatadores
+**De acción corta (rescate):**
+* Salbutamol, ipratropio
+* Uso: Según necesidad para alivio rápido
+
+**De acción prolongada (mantenimiento):**
+* LABA (salmeterol, formoterol)
+* LAMA (tiotropio, umeclidinio)
+* Uso: Diario para control a largo plazo
+
+### Corticosteroides Inhalados
+* Reducen inflamación
+* Se usan en combinación con broncodilatadores en EPOC moderada-grave
+
+### Oxigenoterapia
+* **Indicada cuando:** Saturación de oxígeno < 88% en reposo
+* **Mejora:** Supervivencia y calidad de vida
+* **Uso:** Mínimo 15 horas al día, incluyendo durante el sueño
+
+### Rehabilitación Pulmonar
+Programa supervisado que incluye:
+* Ejercicio físico adaptado
+* Educación sobre la enfermedad
+* Técnicas de respiración
+* Soporte nutricional y psicológico
+
+**Beneficios:** Reduce síntomas, mejora capacidad de ejercicio y calidad de vida
+
+## Manejo de Exacerbaciones
+### Señales de Alerta
+* Aumento de la disnea
+* Mayor producción de esputo o cambio de color
+* Aumento de la tos
+* Fiebre
+
+### Tratamiento de Exacerbaciones
+* Broncodilatadores de rescate más frecuentes
+* Corticosteroides orales (5-7 días)
+* Antibióticos si hay signos de infección bacteriana
+* En casos graves: Hospitalización y oxígeno suplementario
+
+## Prevención de Exacerbaciones
+* **Vacunación:**
+  - Vacuna antigripal anual
+  - Vacuna antineumocócica
+  - Vacuna COVID-19
+* **Evitar irritantes:** Humo, polvo, contaminación
+* **Adherencia al tratamiento:** Uso correcto y regular de medicamentos
+* **Detectar infecciones temprano:** Contacte a su médico ante primeros signos
+
+## Autocuidado y Estilo de Vida
+* **Ejercicio regular:** Caminatas, natación (según tolerancia)
+* **Nutrición adecuada:** Dieta balanceada para mantener peso saludable
+* **Técnicas de respiración:** Respiración con labios fruncidos, respiración diafragmática
+* **Conservación de energía:** Planifique actividades, descanse entre tareas
+* **Evite infecciones:** Lavado de manos, evite multitudes en temporada de gripe
+
+## Cuándo Buscar Atención de Emergencia
+* Dificultad respiratoria severa
+* Labios o uñas azulados
+* Confusión o somnolencia extrema
+* Frecuencia cardíaca muy rápida
+* Los medicamentos de rescate no funcionan
+
+## Pronóstico
+La EPOC es progresiva, pero:
+* **Dejar de fumar frena significativamente el deterioro**
+* Con tratamiento adecuado, muchos pacientes mantienen buena calidad de vida
+* La detección y tratamiento temprano mejoran el pronóstico
+* Adherencia al tratamiento y rehabilitación pulmonar son claves
+
+**Nota importante:** Aunque la EPOC no tiene cura, se puede controlar efectivamente. Dejar de fumar es la medida más importante que puede tomar para frenar la progresión de la enfermedad.
