@@ -2,7 +2,7 @@
 
 > **Trabajo de Fin de Grado** - Ingeniería Informática
 > **Autor:** Diego Martínez López
-> **Universidad:** [Nombre de tu Universidad]
+> **Universidad:** Universidad Complutense de Madrid
 > **Curso:** 2024/2025
 
 Asistente médico virtual inteligente especializado en enfermedades respiratorias, que combina **procesamiento de lenguaje natural (LLM)**, **recuperación aumentada por generación (RAG)**, **síntesis de voz (TTS)** y **generación de avatar animado** para proporcionar una experiencia interactiva y educativa.
@@ -640,7 +640,7 @@ Este asistente médico virtual proporciona **información educativa únicamente*
 - **LangChain** - Por el framework RAG
 - **Piper TTS** - Por la síntesis de voz
 - **Wav2Lip** - Por la tecnología de sincronización labial
-- Mi tutor/a de TFG por la orientación y apoyo
+- Mi tutor de TFG Rubén por la orientación y apoyo
 
 ---
 
@@ -648,7 +648,7 @@ Este asistente médico virtual proporciona **información educativa únicamente*
 
 **Diego Martínez López**
 - GitHub: [@dieguitoml](https://github.com/dieguitoml)
-- Email: [tu-email@ejemplo.com]
+- Email: diegma16@ucm.es
 
 ---
 
