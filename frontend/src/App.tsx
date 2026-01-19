@@ -2,7 +2,7 @@
  * Aplicación principal - Asistente Médico
  */
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {useChat} from './hooks/useChat'
 import {Avatar} from './components/Avatar'
 import {ChatInput} from './components/ChatInput'
@@ -11,8 +11,10 @@ import {ChatMessage} from './components/ChatMessage'
 import {AlertCircle, Stethoscope} from 'lucide-react'
 
 function App() {
-  const { messages, loading, error, currentVideo, currentAudio, send, clear} = useChat() 
+  const { messages, loading, error, currentVideo, currentAudio, send, clear} = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const [useTts, setUseTts] = useState(false)
+  const [useAvatar, setUseAvatar] = useState(false)
   
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({behavior: 'smooth'})
@@ -80,7 +82,7 @@ function App() {
                         {examples.map((example, i) => (
                           <button
                             key={i}
-                            onClick={() => send(example, true, true)}
+                            onClick={() => send(example, useTts, useAvatar)}
                             className="
                               w-full text-left px-4 py-3 bg-blue-50 hover:bg-blue-100
                               text-blue-700 rounded-lg transition-colors text-sm
@@ -115,8 +117,12 @@ function App() {
               {/* Chat Input */}
               <div className="border-t p-6 bg-gray-50">
             <ChatInput
-              onSend={(msg, useTts, useAvatar) => send(msg, useTts, useAvatar)}
+              onSend={(msg) => send(msg, useTts, useAvatar)}
               disabled={loading}
+              useTts={useTts}
+              useAvatar={useAvatar}
+              onTtsChange={setUseTts}
+              onAvatarChange={setUseAvatar}
             />
 
             {/* Clear button */}

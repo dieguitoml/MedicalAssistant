@@ -7,16 +7,18 @@ import type {KeyboardEvent} from 'react'
 import {Send, Trash2, Volume2, Video, Mic, MicOff} from 'lucide-react'
 
 interface ChatInputProps {
-    onSend : (message: string, useTts: boolean, useAvatar: boolean) => void
+    onSend : (message: string) => void
     disabled? : boolean
     placeholder? : string
     onClear? : () => void
+    useTts?: boolean
+    useAvatar?: boolean
+    onTtsChange?: (checked: boolean) => void
+    onAvatarChange?: (checked: boolean) => void
 }
 
-export function ChatInput({onSend, disabled, placeholder, onClear} : ChatInputProps){
+export function ChatInput({onSend, disabled, placeholder, onClear, useTts = false, useAvatar = false, onTtsChange, onAvatarChange} : ChatInputProps){
     const [input, setInput] = useState('')
-    const [useTts, setUseTts] = useState(false)
-    const [useAvatar, setUseAvatar] = useState(false)
     const [isListening, setIsListening] = useState(false)
     const [sttSupported, setSttSupported] = useState(false)
     const recognitionRef = useRef<any>(null)
@@ -85,7 +87,7 @@ export function ChatInput({onSend, disabled, placeholder, onClear} : ChatInputPr
 
     const handleSend = () => {
         if(input.trim() && !disabled){
-            onSend(input.trim(), useTts, useAvatar)
+            onSend(input.trim())
             setInput('')
         }
     }
@@ -125,7 +127,7 @@ export function ChatInput({onSend, disabled, placeholder, onClear} : ChatInputPr
                     <input
                       type = "checkbox"
                       checked = {useTts}
-                      onChange = {(e) => setUseTts(e.target.checked)}
+                      onChange = {(e) => onTtsChange?.(e.target.checked)}
                       disabled = {disabled}
                       className = "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer disabled:opacity-50"
                     />
@@ -139,7 +141,7 @@ export function ChatInput({onSend, disabled, placeholder, onClear} : ChatInputPr
                     <input
                       type = "checkbox"
                       checked = {useAvatar}
-                      onChange = {(e) => setUseAvatar(e.target.checked)}
+                      onChange = {(e) => onAvatarChange?.(e.target.checked)}
                       disabled = {disabled}
                       className = "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer disabled:opacity-50"
                     />
