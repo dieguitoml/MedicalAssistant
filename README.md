@@ -7,6 +7,8 @@
 
 Asistente médico virtual inteligente especializado en enfermedades respiratorias, que combina **procesamiento de lenguaje natural (LLM)**, **recuperación aumentada por generación (RAG)**, **síntesis de voz (TTS)** y **generación de avatar animado** para proporcionar una experiencia interactiva y educativa.
 
+Demo: https://youtu.be/OeTmN7iEAes
+
 ---
 
 ## 📋 Tabla de Contenidos
