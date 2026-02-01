@@ -3,12 +3,13 @@
  */
 
 import {useState} from 'react'
-import {sendMessage} from '../api/client'
+import {sendMessage, generateMedia} from '../api/client'
 import type {Message} from '../types/chat'
 
 export function useChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [loading, setLoading] = useState<boolean>(false)
+  const [loadingMedia, setLoadingMedia] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [currentVideo, setCurrentVideo] = useState<string | null>(null)
   const [currentAudio, setCurrentAudio] = useState<string | null>(null)
@@ -21,7 +22,7 @@ export function useChat() {
   const send = async(content: string, useTts: boolean, useAvatar: boolean) => {
     if(!content.trim()) return
 
-    console.log('useChat send:', { content, useTts, useAvatar }) // Debug
+    console.log('useChat send:', { content, useTts, useAvatar })
 
     //Mensaje del usuario
     const userMessage : Message = {
@@ -32,24 +33,49 @@ export function useChat() {
     setMessages(prev => [...prev, userMessage])
     setLoading(true)
     setError(null)
+
     try{
-        const response = await sendMessage(content, useTts, useAvatar)
+        // 1. Obtener texto primero (sin audio/video para respuesta rápida)
+        const textResponse = await sendMessage(content, false, false)
 
-        //Mensaje del asistente
-        const assitantMessage : Message = {
+        // 2. Mostrar texto inmediatamente
+        const assistantMessage : Message = {
             role : 'assistant',
-            content : response.text,
-            timestamp : new Date(), // Usar fecha actual ya que el backend no devuelve timestamp
-            audioUrl : response.audio_url || undefined,
-            videoUrl : response.video_url || undefined
+            content : textResponse.text,
+            timestamp : new Date()
         }
+        setMessages(prev => [...prev, assistantMessage])
+        setLoading(false) // Quitar loading del texto
 
-        setMessages(prev => [...prev, assitantMessage])
-        if(response.video_url){
-            setCurrentVideo(response.video_url)
-        }
-        if(response.audio_url){
-            setCurrentAudio(response.audio_url)
+        // 3. Si se pidió audio/video, generarlo en segundo plano
+        if (useTts || useAvatar) {
+            setLoadingMedia(true)
+            generateMedia(textResponse.text, useAvatar)
+                .then(mediaResponse => {
+                    // Actualizar el mensaje con las URLs de audio/video
+                    setMessages(prev => prev.map((msg, idx) =>
+                        idx === prev.length - 1 && msg.role === 'assistant'
+                            ? {
+                                ...msg,
+                                audioUrl: mediaResponse.audio_url || undefined,
+                                videoUrl: mediaResponse.video_url || undefined
+                              }
+                            : msg
+                    ))
+
+                    if (mediaResponse.video_url) {
+                        setCurrentVideo(mediaResponse.video_url)
+                    }
+                    if (mediaResponse.audio_url) {
+                        setCurrentAudio(mediaResponse.audio_url)
+                    }
+                })
+                .catch(err => {
+                    console.error('Error generando media:', err)
+                })
+                .finally(() => {
+                    setLoadingMedia(false)
+                })
         }
 
     } catch (err) {
@@ -57,14 +83,12 @@ export function useChat() {
         setError(errorMessage)
         console.error('Error al enviar el mensaje:', err)
 
-        //Mensaje de error
         const errorMsg: Message = {
             role : 'assistant',
-            content : `❌ Error: ${errorMessage}. Por favor, intenta de nuevo.`,
+            content : `Error: ${errorMessage}. Por favor, intenta de nuevo.`,
             timestamp : new Date()
         }
         setMessages(prev => [...prev, errorMsg])
-    } finally {
         setLoading(false)
     }
   }
@@ -81,6 +105,7 @@ export function useChat() {
     return {
         messages,
         loading,
+        loadingMedia,
         error,
         currentVideo,
         currentAudio,

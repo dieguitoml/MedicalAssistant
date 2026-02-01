@@ -11,7 +11,7 @@ import {ChatMessage} from './components/ChatMessage'
 import {AlertCircle, Stethoscope} from 'lucide-react'
 
 function App() {
-  const { messages, loading, error, currentVideo, currentAudio, send, clear} = useChat()
+  const { messages, loading, loadingMedia, error, currentVideo, currentAudio, send, clear} = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const [useTts, setUseTts] = useState(false)
   const [useAvatar, setUseAvatar] = useState(false)
@@ -83,9 +83,11 @@ function App() {
                           <button
                             key={i}
                             onClick={() => send(example, useTts, useAvatar)}
+                            disabled={loading || loadingMedia}
                             className="
                               w-full text-left px-4 py-3 bg-blue-50 hover:bg-blue-100
                               text-blue-700 rounded-lg transition-colors text-sm
+                              disabled:opacity-50 disabled:cursor-not-allowed
                             "
                           >
                             {example}
@@ -118,7 +120,7 @@ function App() {
               <div className="border-t p-6 bg-gray-50">
             <ChatInput
               onSend={(msg) => send(msg, useTts, useAvatar)}
-              disabled={loading}
+              disabled={loading || loadingMedia}
               useTts={useTts}
               useAvatar={useAvatar}
               onTtsChange={setUseTts}
@@ -129,7 +131,8 @@ function App() {
             {messages.length > 0 && (
               <button
                 onClick={clear}
-                className="mt-3 text-sm text-gray-500 hover:text-gray-700"
+                disabled={loading || loadingMedia}
+                className="mt-3 text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 🗑️ Reiniciar conversación
               </button>

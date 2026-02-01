@@ -3,7 +3,7 @@
  * 
  */
 import axios from 'axios'
-import type {ChatRequest, ChatResponse, HealthResponse} from '../types/chat'
+import type {ChatRequest, ChatResponse, HealthResponse, MediaRequest, MediaResponse} from '../types/chat'
 
 
 //Configurar cliente axios
@@ -62,4 +62,19 @@ export async function getExamples() : Promise<string[]> {
 
 export async function clearHistory() : Promise<void> {
     await apiClient.post('/api/chat/clear')
+}
+
+/**
+ * Generar audio/video a partir de texto (llamada asíncrona)
+ */
+export async function generateMedia(
+    text: string,
+    useAvatar: boolean
+): Promise<MediaResponse> {
+    const request: MediaRequest = {
+        text,
+        use_avatar: useAvatar
+    }
+    const response = await apiClient.post<MediaResponse>('/api/chat/media', request)
+    return response.data
 }

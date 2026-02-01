@@ -2,15 +2,38 @@
 Servicio de chat con LLM y RAG
 Integra LangChain, Ollama y ChromaDB
 """
-import json
 from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
-from langchain_core.tools import tool
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from ..config import CHAT_MODEL, EMBEDDING_MODEL, DATABASE_LOCATION
+
+# Configuración de retrieval
+SIMILARITY_THRESHOLD = 1.0  # L2 menor = más similar
+SEARCH_K = 25
+MAX_RETURN = 10
+MAX_CHARS_PER_DOC = 1200
+
+SYSTEM_PROMPT = """Eres un asistente médico especializado ÚNICAMENTE en enfermedades respiratorias.
+
+INSTRUCCIONES:
+- SOLO puedes responder preguntas relacionadas con enfermedades respiratorias (asma, EPOC, neumonía, bronquitis, COVID-19, tuberculosis, etc.).
+- Si la pregunta NO es sobre enfermedades respiratorias, responde educadamente que solo puedes ayudar con temas respiratorios.
+- Usa el contexto proporcionado para responder. No inventes información.
+- Cita las fuentes al final con el formato: Fuente: nombre_archivo.txt
+- Responde en español claro y profesional.
+- Para saludos generales ('Hola', '¿Cómo estás?'), responde brevemente y menciona que puedes ayudar con preguntas sobre enfermedades respiratorias."""
+
+NO_CONTEXT_RESPONSE = """Lo siento, solo puedo ayudarte con preguntas relacionadas con enfermedades respiratorias como:
+- Asma
+- EPOC (Enfermedad Pulmonar Obstructiva Crónica)
+- Neumonía
+- Bronquitis
+- COVID-19
+- Tuberculosis
+- Otras afecciones del sistema respiratorio
+
+¿Tienes alguna pregunta sobre estos temas?"""
 
 
 class ChatService:
@@ -22,49 +45,9 @@ class ChatService:
         self.embeddings = None
         self.vectorstore = None
         self.llm = None
-        self.agent_executor = None
         self.messages_history = []
 
         self._initialize()
-
-    def _clean_llm_output(self, text: str) -> str:
-        """
-        Si el modelo devuelve JSON, lo convertimos a texto natural.
-        """
-        if not text:
-            return text
-
-        t = text.strip()
-        if not (t.startswith("{") or t.startswith("[")):
-            return text
-
-        try:
-            parsed = json.loads(t)
-
-            if isinstance(parsed, dict):
-                # casos típicos
-                for key in ["answer", "respuesta", "output", "text", "content", "message"]:
-                    if key in parsed and isinstance(parsed[key], str):
-                        return parsed[key].strip()
-
-                # caso: {"texto largo": "Fuente: ..."}
-                if len(parsed) == 1:
-                    k, v = next(iter(parsed.items()))
-                    if isinstance(k, str) and len(k) > 20:
-                        if isinstance(v, str) and v.strip():
-                            return f"{k.strip()}\n\n{v.strip()}"
-                        return k.strip()
-
-                # fallback genérico
-                return "\n".join([f"{k}: {v}" for k, v in parsed.items()]).strip()
-
-            if isinstance(parsed, list):
-                return "\n".join([str(x) for x in parsed]).strip()
-
-            return str(parsed).strip()
-
-        except Exception:
-            return text
 
     def _initialize(self):
         """Inicializar componentes de LangChain"""
@@ -82,61 +65,6 @@ class ChatService:
             print(f"[CHAT] Inicializando LLM: {CHAT_MODEL}")
             self.llm = ChatOllama(model=CHAT_MODEL)
 
-            # ✅ Tool retrieval con filtrado por L2 < 1
-            @tool
-            def retrieve(query: str) -> str:
-                """Recupera información médica relevante desde la base vectorial."""
-                SIMILARITY_THRESHOLD = 1.0  # L2 menor = más similar
-                SEARCH_K = 25              # buscar varios
-                MAX_RETURN = 10            # para no saturar al LLM
-                MAX_CHARS_PER_DOC = 1200   # recorte por documento (evita context overflow)
-
-                results = self.vectorstore.similarity_search_with_score(query, k=SEARCH_K)
-
-                # Filtrar por score (L2)
-                filtered = [(doc, score) for doc, score in results if score <= SIMILARITY_THRESHOLD]
-
-                if not filtered:
-                    return "No se encontró información relevante en la base de datos médica."
-
-                # (opcional) ordenar por score ascendente (más similar primero)
-                filtered.sort(key=lambda x: x[1])
-
-                # limitar cantidad por seguridad
-                filtered = filtered[:MAX_RETURN]
-
-                output = f"\n=== Resultados de búsqueda ({len(filtered)} documentos relevantes) ===\n"
-                for doc, score in filtered:
-                    source = doc.metadata.get("source", "desconocida")
-                    content = (doc.page_content or "")[:MAX_CHARS_PER_DOC]
-                    output += f"\nFuente: {source} (L2: {score:.2f})\n{content}\n"
-                output += "\n=== Fin de resultados ===\n"
-                return output
-
-            # Configurar prompt
-            prompt = ChatPromptTemplate.from_messages([
-                SystemMessage(content=(
-                    "Eres un asistente médico experto en enfermedades respiratorias.\n"
-                    "Tu objetivo es ayudar a los usuarios a entender síntomas, causas y tratamientos.\n\n"
-                    "INSTRUCCIONES:\n"
-                    "- Usa la herramienta 'retrieve' para buscar información médica.\n"
-                    "- No inventes respuestas.\n"
-                    "- Cita las fuentes al final con el formato: Fuente: nombre_archivo.txt\n"
-                    "- Responde SIEMPRE en español claro y profesional.\n"
-                    "- Si el usuario dice algo general como 'Hola', responde brevemente y luego indícale "
-                    "que puede hacer preguntas relacionadas con enfermedades respiratorias.\n"
-                )),
-                MessagesPlaceholder(variable_name="chat_history"),
-                ("human", "{input}"),
-                MessagesPlaceholder(variable_name="agent_scratchpad"),
-            ])
-
-            # Crear agente
-            tools = [retrieve]
-            llm_with_tools = self.llm.bind_tools(tools)
-            agent = create_tool_calling_agent(llm_with_tools, tools, prompt)
-            self.agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
             print("[CHAT] ✓ Chat service inicializado correctamente")
 
         except Exception as e:
@@ -144,9 +72,36 @@ class ChatService:
             import traceback
             traceback.print_exc()
 
+    def _retrieve(self, query: str) -> tuple[str, bool]:
+        """
+        Recupera información médica relevante desde la base vectorial.
+        Retorna (contexto, es_relevante) donde es_relevante indica si se encontró información.
+        """
+        results = self.vectorstore.similarity_search_with_score(query, k=SEARCH_K)
+
+        # Filtrar por score (L2)
+        filtered = [(doc, score) for doc, score in results if score <= SIMILARITY_THRESHOLD]
+
+        if not filtered:
+            return "", False
+
+        # Ordenar por score ascendente (más similar primero)
+        filtered.sort(key=lambda x: x[1])
+
+        # Limitar cantidad
+        filtered = filtered[:MAX_RETURN]
+
+        output = f"=== Contexto médico ({len(filtered)} documentos) ===\n"
+        for doc, score in filtered:
+            source = doc.metadata.get("source", "desconocida")
+            content = (doc.page_content or "")[:MAX_CHARS_PER_DOC]
+            output += f"\n[Fuente: {source}]\n{content}\n"
+        output += "\n=== Fin del contexto ===\n"
+        return output, True
+
     def is_available(self) -> bool:
         """Verificar si el servicio está disponible"""
-        return self.agent_executor is not None
+        return self.llm is not None and self.vectorstore is not None
 
     def process_message(self, message: str) -> str:
         """Procesar un mensaje del usuario"""
@@ -154,19 +109,37 @@ class ChatService:
             return "Error: El servicio de chat no está disponible."
 
         try:
+            # 1. Recuperar contexto relevante
+            context, is_relevant = self._retrieve(message)
+
+            # 2. Si no hay contexto relevante, verificar si es saludo o rechazar
+            if not is_relevant:
+                # Permitir saludos básicos
+                greetings = ['hola', 'buenos días', 'buenas tardes', 'buenas noches', 'hey', 'hi', 'hello']
+                if any(g in message.lower() for g in greetings):
+                    ai_reply = "¡Hola! Soy un asistente especializado en enfermedades respiratorias. ¿En qué puedo ayudarte? Puedo responder preguntas sobre asma, EPOC, neumonía, bronquitis, COVID-19, tuberculosis y otras afecciones del sistema respiratorio."
+                else:
+                    ai_reply = NO_CONTEXT_RESPONSE
+
+                self.messages_history.append(HumanMessage(content=message))
+                self.messages_history.append(AIMessage(content=ai_reply))
+                return ai_reply
+
+            # 3. Construir mensajes para el LLM con contexto
+            messages = [
+                SystemMessage(content=SYSTEM_PROMPT),
+                *self.messages_history,
+                HumanMessage(content=f"CONTEXTO:\n{context}\n\nPREGUNTA DEL USUARIO:\n{message}")
+            ]
+
+            # 4. Generar respuesta
+            response = self.llm.invoke(messages)
+            ai_reply = response.content
+
+            # 4. Guardar en historial (sin el contexto, solo la pregunta original)
             self.messages_history.append(HumanMessage(content=message))
-
-            response = self.agent_executor.invoke({
-                "input": message,
-                "chat_history": self.messages_history
-            })
-
-            ai_reply = response["output"]
-
-            # ✅ limpiar JSON si aparece
-            ai_reply = self._clean_llm_output(ai_reply)
-
             self.messages_history.append(AIMessage(content=ai_reply))
+
             return ai_reply
 
         except Exception as e:
@@ -176,5 +149,6 @@ class ChatService:
             return f"Error al procesar tu consulta: {str(e)}"
 
     def clear_history(self):
+        """Limpiar historial de conversación"""
         self.messages_history = []
         print("[CHAT] Historial limpiado")

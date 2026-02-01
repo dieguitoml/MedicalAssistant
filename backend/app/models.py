@@ -87,3 +87,27 @@ class ErrorResponse(BaseModel):
         description="Detalle adicional del error"
     )
     timestamp: datetime = Field(default_factory=datetime.now)
+
+
+class MediaRequest(BaseModel):
+    """
+    Request para generar audio/video a partir de texto ya generado
+    """
+    text: str = Field(
+        ...,
+        min_length=1,
+        description="Texto para convertir a audio/video"
+    )
+    use_avatar: bool = Field(
+        default=False,
+        description="Si es True genera video con avatar, si es False solo audio"
+    )
+
+
+class MediaResponse(BaseModel):
+    """
+    Respuesta con URLs de audio/video generados
+    """
+    audio_url: Optional[str] = None
+    video_url: Optional[str] = None
+    processing_time: float = 0.0

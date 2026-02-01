@@ -31,3 +31,14 @@ export interface HealthResponse {
         avatar : boolean
     }
 }
+
+export interface MediaRequest {
+    text: string
+    use_avatar: boolean
+}
+
+export interface MediaResponse {
+    audio_url: string | null
+    video_url: string | null
+    processing_time: number
+}

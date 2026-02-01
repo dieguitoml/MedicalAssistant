@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 import os
 
-from .models import ChatRequest, ChatResponse, HealthResponse, ErrorResponse
+from .models import ChatRequest, ChatResponse, HealthResponse, ErrorResponse, MediaRequest, MediaResponse
 from .services import ChatService, TTSService, AvatarService
 from .config import CORS_ORIGINS, TTS_OUTPUT_DIR, VIDEO_OUTPUT_DIR
 
@@ -198,8 +198,56 @@ async def clear_chat():
    else:
       raise HTTPException(
         status_code=503,
-        detail = "Chat service no disponible" 
+        detail = "Chat service no disponible"
       )
+
+
+@app.post("/api/chat/media", response_model=MediaResponse)
+async def generate_media(request: MediaRequest):
+   """
+   Endpoint para generar audio/video a partir de texto.
+   Usado para carga asíncrona: el frontend obtiene el texto primero,
+   luego llama a este endpoint para generar audio/video en segundo plano.
+   """
+   start_time = time.time()
+
+   audio_url = None
+   video_url = None
+   audio_path = None
+
+   try:
+      # 1. Generar audio con TTS
+      if tts_service and tts_service.is_available():
+         print(f"\n[MEDIA] Generando audio para texto de {len(request.text)} caracteres...")
+         audio_path = tts_service.generate_audio(request.text)
+         if audio_path:
+            filename = Path(audio_path).name
+            audio_url = f"http://localhost:8000/static/audio/{filename}"
+            print(f"[MEDIA] ✓ Audio: {audio_url}")
+
+      # 2. Generar video si se solicita y hay audio
+      if request.use_avatar and avatar_service and avatar_service.is_available() and audio_path:
+         print("[MEDIA] Generando video con Wav2Lip...")
+         video_path = avatar_service.generate_video(audio_path)
+         if video_path:
+            filename = Path(video_path).name
+            video_url = f"http://localhost:8000/static/video/{filename}"
+            print(f"[MEDIA] ✓ Video: {video_url}")
+
+      processing_time = time.time() - start_time
+      print(f"[MEDIA] Completado en {processing_time:.2f}s")
+
+      return MediaResponse(
+         audio_url=audio_url,
+         video_url=video_url,
+         processing_time=processing_time
+      )
+
+   except Exception as e:
+      print(f"[MEDIA] ✗ Error: {e}")
+      import traceback
+      traceback.print_exc()
+      raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/chat/examples")
 async def chat_examples():
