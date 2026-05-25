@@ -21,7 +21,6 @@ Demo: https://youtu.be/OeTmN7iEAes
 - [Instalación](#-instalación)
 - [Configuración](#-configuración)
 - [Dataset de Enfermedades Respiratorias](#-dataset-de-enfermedades-respiratorias)
-- [Sistema de Parpadeos Naturales](#-sistema-de-parpadeos-naturales)
 - [Optimizaciones de Wav2Lip](#-optimizaciones-de-wav2lip)
 - [Sistema de Reconocimiento de Voz (STT)](#-sistema-de-reconocimiento-de-voz-stt)
 - [Uso](#-uso)
@@ -40,7 +39,7 @@ Demo: https://youtu.be/OeTmN7iEAes
 - 📚 **Dataset Completo**: 20 enfermedades respiratorias (1500-2400 caracteres cada una)
 - 🎤 **Reconocimiento de Voz (STT)**: Entrada por voz usando Web Speech API
 - 🎙️ **Síntesis de Voz (TTS)**: Generación de audio natural en español con Piper TTS
-- 🎭 **Avatar Animado**: Sincronización labial realista con Wav2Lip v2 + sistema de parpadeos naturales
+- 🎭 **Avatar Animado**: Sincronización labial realista con Wav2Lip v2
 - 💬 **Interfaz Moderna**: Frontend React con diseño responsive y accesible
 - 🔒 **Información Confiable**: Base de datos vectorial con información médica verificada
 - ⚡ **Tiempo Real**: Generación de respuestas, audio y video en 8-12 segundos
@@ -222,9 +221,6 @@ source venv/bin/activate
 # Instalar dependencias
 pip install -r requirements.txt
 
-# Descargar modelo de spaCy para análisis de parpadeos
-python -m spacy download es_core_news_sm
-
 # Generar base de datos ChromaDB
 python ChromaDB.py
 
@@ -329,37 +325,6 @@ splitter = MarkdownTextSplitter(
 - Alta calidad de embeddings (768 dimensiones)
 - Permite chunks grandes para mejor contexto
 - Sin errores de "chunk demasiado largo"
-
----
-
-## 🎬 Sistema de Parpadeos Naturales
-
-El avatar incluye un sistema avanzado de parpadeos que simula comportamiento humano natural:
-
-### Características
-- **Frecuencia natural**: 15-20 parpadeos por minuto
-- **Detección facial**: MediaPipe Face Mesh para ubicación precisa de ojos
-- **Análisis de texto**: spaCy para detectar pausas naturales
-- **Sincronización inteligente**: Parpadeos en puntos de puntuación y pausas
-- **Variación realista**: Distribución gamma para tiempos entre parpadeos
-
-### Implementación
-
-**Archivo:** `backend/app/services/avatar_service.py`
-
-```python
-def generate_blinks(video, text):
-    # Detecta rostros con MediaPipe
-    # Analiza texto con spaCy para encontrar pausas
-    # Genera parpadeos en momentos naturales
-    # Fusiona frames de parpadeo con el video original
-```
-
-**Dependencias:**
-```bash
-pip install mediapipe spacy
-python -m spacy download es_core_news_sm
-```
 
 ---
 
@@ -520,11 +485,8 @@ PIPER_VOICE_ID = "es_MX-claude-high"  # Español México
 
 ## 🎯 Endpoints de la API
 
-### GET `/api/health`
-Verificar estado de los servicios
-
 ### POST `/api/chat`
-Enviar mensaje al asistente
+Enviar mensaje al asistente. Gestiona texto, audio y video en una sola llamada según los parámetros indicados.
 
 **Request:**
 ```json
@@ -545,11 +507,10 @@ Enviar mensaje al asistente
 }
 ```
 
-### GET `/api/chat/clear`
-Limpiar historial de conversación
-
-### GET `/api/chat/examples`
-Obtener preguntas de ejemplo
+- `use_tts: false` → solo texto (sin `audio_url`)
+- `use_avatar: false` → sin video (sin `video_url`)
+- `use_tts: true, use_avatar: false` → texto + audio
+- `use_tts: true, use_avatar: true` → texto + audio + video
 
 ---
 
@@ -563,7 +524,6 @@ Con una **RTX 3060 Laptop (6GB VRAM)**:
   - + Síntesis de voz: ~2-3s
 - **Texto + TTS + Avatar:** ~8-12 segundos
   - + Wav2Lip inference: ~4-6s
-  - + Sistema de parpadeos: ~1-2s
 
 **Nota:** Los tiempos varían según la longitud de la respuesta y la carga del sistema.
 
@@ -668,12 +628,6 @@ python test_retrieval.py
 - Verifica que Wav2Lip esté correctamente instalado
 - Verifica que el checkpoint `wav2lip_gan.pth` exista en `Wav2Lipv2/checkpoints/`
 - Revisa los logs del backend para errores específicos
-
-### Parpadeos no aparecen en el video
-- Verifica instalación de MediaPipe: `pip install mediapipe`
-- Verifica instalación de spaCy: `pip install spacy`
-- Descarga el modelo de spaCy: `python -m spacy download es_core_news_sm`
-- Revisa que el servicio de avatar esté usando `generate_blinks()`
 
 ### El retrieval no encuentra información relevante
 - Regenera ChromaDB: `python ChromaDB.py`
