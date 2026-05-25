@@ -486,7 +486,7 @@ PIPER_VOICE_ID = "es_MX-claude-high"  # Español México
 ## 🎯 Endpoints de la API
 
 ### POST `/api/chat`
-Enviar mensaje al asistente. Gestiona texto, audio y video en una sola llamada según los parámetros indicados.
+Enviar un mensaje al asistente. Devuelve la respuesta textual generada por el LLM + RAG, con audio y video opcionales en la misma llamada.
 
 **Request:**
 ```json
@@ -503,14 +503,38 @@ Enviar mensaje al asistente. Gestiona texto, audio y video en una sola llamada s
   "text": "El asma es una enfermedad...",
   "audio_url": "http://localhost:8000/static/audio/tts_12345.wav",
   "video_url": "http://localhost:8000/static/video/avatar_12345.mp4",
-  "processing_time": 3.45
+  "processing_time": 8.32
 }
 ```
 
-- `use_tts: false` → solo texto (sin `audio_url`)
-- `use_avatar: false` → sin video (sin `video_url`)
+- `use_tts: false, use_avatar: false` → solo texto
 - `use_tts: true, use_avatar: false` → texto + audio
 - `use_tts: true, use_avatar: true` → texto + audio + video
+
+---
+
+### POST `/api/chat/media`
+Generar audio y/o video a partir de un texto ya obtenido. Usado para carga asíncrona: el frontend primero llama a `/api/chat` para obtener el texto inmediatamente, y luego llama a este endpoint en segundo plano para generar los medios.
+
+**Request:**
+```json
+{
+  "text": "El asma es una enfermedad crónica...",
+  "use_avatar": true
+}
+```
+
+**Response:**
+```json
+{
+  "audio_url": "http://localhost:8000/static/audio/tts_12345.wav",
+  "video_url": "http://localhost:8000/static/video/avatar_12345.mp4",
+  "processing_time": 6.15
+}
+```
+
+- `use_avatar: false` → solo audio
+- `use_avatar: true` → audio + video
 
 ---
 
